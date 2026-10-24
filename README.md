@@ -15,7 +15,7 @@ A client-side, reversible performance mod. Press **F8** to switch to a low-graph
 Minecraft Java 1.20.1, Forge 47.x, Java 17. Put the built JAR in your client `mods` folder. Do not install on a server.
 
 ## Build
-Run `./gradlew build` with JDK 17. The JAR is written to `build/libs/`.
+Install JDK 17 and Gradle 8.8, then run `gradle build`. The JAR is written to `build/libs/`.
 
 ## License
 MIT — see [LICENSE](LICENSE).
