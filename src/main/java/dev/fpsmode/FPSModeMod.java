@@ -1,11 +1,12 @@
 package dev.fpsmode;
 
-import dev.fpsmode.client.ClientSetup;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod("fpsmode")
+@Mod(FPSModeMod.MOD_ID)
 public final class FPSModeMod {
+    public static final String MOD_ID = "fpsmode";
+
     public FPSModeMod() {
-        ClientSetup.init();
+        // The performance profile is client-side and reversible.
     }
 }
