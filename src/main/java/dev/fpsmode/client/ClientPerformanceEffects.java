@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.HugeExplosionParticle;
 import net.minecraft.client.particle.HugeExplosionSeedParticle;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -65,11 +66,13 @@ final class ClientPerformanceEffects {
                 if (!(texture instanceof TextureAtlas atlas)) continue;
                 Object tickerValue = ATLAS_ANIMATED_TEXTURES.get(atlas);
                 if (!(tickerValue instanceof List<?> tickers) || tickers.isEmpty()) continue;
+
                 List<TextureAtlasSprite.Ticker> original = new ArrayList<>();
                 for (Object ticker : tickers) {
                     if (ticker instanceof TextureAtlasSprite.Ticker spriteTicker) original.add(spriteTicker);
                 }
                 if (original.isEmpty()) continue;
+                // Replace the saved list after a resource reload, so disabling restores the newest atlas.
                 PAUSED_TICKERS.put(atlas, original);
                 tickers.clear();
             }

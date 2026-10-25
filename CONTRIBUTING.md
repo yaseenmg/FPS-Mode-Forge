@@ -14,4 +14,6 @@ Bug reports, ideas, translations and pull requests are welcome.
 - Open an issue before large changes.
 
 ## Pull requests
-Describe the problem, the change, and how it was tested.
+1. Fork the repo and create a branch.
+2. Test toggling with F8 on and off in Minecraft 1.20.1 / Forge 47.
+3. Describe what changed and why.
