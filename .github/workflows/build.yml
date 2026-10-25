@@ -26,13 +26,15 @@ jobs:
       - name: Generate and commit Gradle Wrapper if missing
         shell: bash
         run: |
-          gradle wrapper --gradle-version 8.8 --no-daemon
-          if [ -n "$(git status --porcelain -- gradlew gradlew.bat gradle/wrapper)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add gradlew gradlew.bat gradle/wrapper/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.properties
-            git commit -m "Add Gradle wrapper"
-            git push
+          if [ ! -f gradlew ] || [ ! -f gradlew.bat ] || [ ! -f gradle/wrapper/gradle-wrapper.jar ] || [ ! -f gradle/wrapper/gradle-wrapper.properties ]; then
+            gradle wrapper --gradle-version 8.8 --no-daemon
+            if [ -n "$(git status --porcelain -- gradlew gradlew.bat gradle/wrapper)" ]; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add gradlew gradlew.bat gradle/wrapper/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.properties
+              git commit -m "Add Gradle wrapper"
+              git push
+            fi
           fi
       - name: Build Forge mod
         run: gradle build --no-daemon
